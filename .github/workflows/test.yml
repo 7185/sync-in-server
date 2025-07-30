@@ -24,5 +24,10 @@ jobs:
       - name: Lint code
         run: npm run lint
 
+      - name: Copy environment file
+        run: |
+          cp environment/environment.dist.yaml environment/environment.yaml
+          sed -i "s|dataPath: /home/|dataPath: /tmp/|" environment/environment.yaml
+
       - name: Run unit tests
         run: npm run test
